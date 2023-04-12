@@ -1,5 +1,11 @@
+import DisplayPosts from "./components/displayPosts";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="container">
+      <DisplayPosts />
+    </div>
+  );
 }
 
 export default App;

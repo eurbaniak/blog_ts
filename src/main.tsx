@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import "bulma/css/bulma.min.css";
 
 const queryClient = new QueryClient();
 
