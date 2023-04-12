@@ -15,9 +15,23 @@ const DisplayPosts: React.FC = () => {
 
   return (
     <div>
-      <h2>all posts: </h2>
-      {posts?.map((post: Post) => {
-        return <p key={post.id}>{post.title}</p>;
+      {posts?.map(({ id, title, body }: Post) => {
+        return (
+          <div className="card m-5 has-background-light" key={id}>
+            <div className="card-content has-text-centered">
+              <p className="title">“{title}”</p>
+              <p className="subtitle">author</p>
+            </div>
+            <footer className="card-footer">
+              <p className="card-footer-item">
+                <button className="button is-outlined is-info">Read</button>
+              </p>
+              <p className="card-footer-item">
+                <button className="button is-outlined is-danger">Delete</button>
+              </p>
+            </footer>
+          </div>
+        );
       })}
     </div>
   );
