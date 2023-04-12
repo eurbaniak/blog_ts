@@ -1,6 +1,7 @@
-import DisplayPosts from "./components/displayPosts";
+import DisplayPosts from "./components/DisplayPosts";
 import { Routes, Route, Link } from "react-router-dom";
 import Modal from "./components/modal";
+import NewPost from "./components/NewPost";
 
 function App() {
   return (
@@ -17,13 +18,13 @@ function App() {
         <div className="columns is-centered">
           <div className="column is-three-quarters">
             <Routes>
-              <Route path="/" element={<DisplayPosts />} />
+              <Route index path="/" Component={DisplayPosts} />
               <Route
                 path="/new"
                 element={
                   <>
                     <Modal active={true}>
-                      <div>ss</div>
+                      <NewPost />
                     </Modal>
                     <DisplayPosts />
                   </>

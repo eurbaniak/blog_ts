@@ -1,4 +1,4 @@
-import { Post } from "../interface/index";
+import { Post, NewPost } from "../interface/index";
 
 const API_URL = import.meta.env.VITE_API;
 
@@ -11,7 +11,7 @@ export const fetchPosts = async (): Promise<Post[]> => {
   return data;
 };
 
-export const createPost = async (post: Post): Promise<Post> => {
+export const createPost = async (post: NewPost): Promise<NewPost> => {
   const res = await fetch(`${API_URL}/posts`, {
     method: "POST",
     headers: {

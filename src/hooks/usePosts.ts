@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { fetchPosts, createPost } from "../api/posts";
-import { Post } from "../interface/index";
+import { Post, NewPost } from "../interface/index";
 
 interface UsePosts {
   posts?: Post[];
@@ -18,7 +18,7 @@ const usePosts = (): UsePosts => {
     status,
   } = useQuery<Post[], Error>("posts", fetchPosts);
 
-  const addPost = useMutation<Post, any, Post>((post) => createPost(post), {
+  const addPost = useMutation<NewPost, any, Post>((post) => createPost(post), {
     onSuccess: () => {
       queryClient.invalidateQueries("posts");
     },
