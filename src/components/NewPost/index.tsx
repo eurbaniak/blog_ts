@@ -8,6 +8,7 @@ type Props = {};
 type FormValues = {
   title: string;
   body: string;
+  author: string;
 };
 
 const NewPost = (props: Props) => {
@@ -43,7 +44,18 @@ const NewPost = (props: Props) => {
             )}
           </div>
         </div>
-
+        <div className="field">
+          <label className="label">Author</label>
+          <div className="control">
+            <input
+              {...register("author", { required: true })}
+              className={`input ${errors.title ? "is-danger" : ""}`}
+            />
+            {errors.title && (
+              <p className="help is-danger">Author is required</p>
+            )}
+          </div>
+        </div>
         <div className="field">
           <label className="label">Body</label>
           <div className="control">

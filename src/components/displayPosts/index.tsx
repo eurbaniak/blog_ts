@@ -15,12 +15,12 @@ const DisplayPosts: React.FC = () => {
 
   return (
     <div>
-      {posts?.map(({ id, title, body }: Post) => {
+      {posts?.map(({ id, title, author }: Post) => {
         return (
           <div className="card m-5 has-background-light" key={id}>
             <div className="card-content has-text-centered">
               <p className="title">“{title}”</p>
-              <p className="subtitle">author</p>
+              <p className="subtitle">{author}</p>
             </div>
             <footer className="card-footer">
               <p className="card-footer-item">

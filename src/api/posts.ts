@@ -11,6 +11,15 @@ export const fetchPosts = async (): Promise<Post[]> => {
   return data;
 };
 
+export const fetchPost = async (id: number): Promise<Post> => {
+  const res = await fetch(`${API_URL}/posts/${id}`);
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch a Post");
+  }
+  return data;
+};
+
 export const createPost = async (post: NewPost): Promise<NewPost> => {
   const res = await fetch(`${API_URL}/posts`, {
     method: "POST",
