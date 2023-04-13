@@ -11,13 +11,17 @@ export const fetchPosts = async (): Promise<Post[]> => {
   return data;
 };
 
-export const fetchPost = async (id: number): Promise<Post> => {
-  const res = await fetch(`${API_URL}/posts/${id}`);
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.message || "Failed to fetch a Post");
+export const fetchPost = async (id: number | null): Promise<Post> => {
+  if (id !== null) {
+    const res = await fetch(`${API_URL}/posts/${id}`);
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || "Failed to fetch a Post");
+    }
+    return data;
   }
-  return data;
+
+  return Promise.reject(new Error("id must be provided"));
 };
 
 export const createPost = async (post: NewPost): Promise<NewPost> => {

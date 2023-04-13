@@ -18,7 +18,7 @@ const NewPost = (props: Props) => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const { addPost } = usePosts();
+  const { addPost } = usePosts(null);
 
   const navigate = useNavigate();
 

@@ -1,9 +1,10 @@
 import React from "react";
 import { Post } from "../../interface/index";
 import usePosts from "../../hooks/usePosts";
+import { Link } from "react-router-dom";
 
 const DisplayPosts: React.FC = () => {
-  const { posts, status, error } = usePosts();
+  const { posts, status, error } = usePosts(null);
 
   if (status === "loading") {
     return <div>...loading</div>;
@@ -24,11 +25,13 @@ const DisplayPosts: React.FC = () => {
             </div>
             <footer className="card-footer">
               <p className="card-footer-item">
-                <button className="button is-outlined is-info">Read</button>
+                <Link to={`/show/${id}`}>
+                  <button className="button is-outlined is-info">Read</button>
+                </Link>
               </p>
-              <p className="card-footer-item">
+              {/* <p className="card-footer-item">
                 <button className="button is-outlined is-danger">Delete</button>
-              </p>
+              </p> */}
             </footer>
           </div>
         );
