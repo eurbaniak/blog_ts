@@ -4,7 +4,7 @@ import usePosts from "../../hooks/usePosts";
 
 const ShowPost = () => {
   const { id } = useParams<{ id: string }>();
-  const { post, postError, postStatus } = usePosts(id ? parseInt(id) : null);
+  const { post, postError, postStatus } = usePosts(Number(id));
 
   if (postStatus === "loading") {
     return <div>Loading...</div>;
