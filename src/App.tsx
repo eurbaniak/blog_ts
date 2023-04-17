@@ -4,16 +4,14 @@ import Modal from "./components/modal";
 import NewPost from "./components/NewPost";
 import usePosts from "./hooks/usePosts";
 import ShowPost from "./components/ShowPost";
+import DeletePost from "./components/DeletePost";
 
 function App() {
   const { error } = usePosts(null);
   return (
     <>
       <nav className="navbar has-shadow is-light is-spaced">
-        <div className="navbar-start">
-          {/* <Link to="/">Blogg</Link> */}
-          Blogg
-        </div>
+        <div className="navbar-start">Blogg</div>
         <div className="navbar-end">
           <Link to="/new">
             <button className="button is-info">Add Post</button>
@@ -38,6 +36,17 @@ function App() {
                 }
               />
               <Route path="/show/:id" Component={ShowPost} />
+              <Route
+                path="/delete/:id"
+                element={
+                  <>
+                    <Modal active={true} link="/show">
+                      <DeletePost />
+                    </Modal>
+                    <ShowPost />
+                  </>
+                }
+              />
             </Routes>
           </div>
         </div>

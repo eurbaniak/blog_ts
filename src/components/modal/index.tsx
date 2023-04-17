@@ -1,16 +1,23 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface Props {
   children?: React.ReactNode;
   active: boolean;
+  link?: string;
 }
 
-const Modal = ({ children, active }: Props) => {
+const Modal = ({ children, active, link }: Props) => {
+  const { id } = useParams();
   const navigate = useNavigate();
+
   const closeModal = () => {
-    navigate("/");
+    if (!link) {
+      navigate("/");
+    }
+    navigate(`${link}/${id}`);
   };
+
   if (!children) return null;
   return (
     <div className={`modal ${active && `is-active`}`}>

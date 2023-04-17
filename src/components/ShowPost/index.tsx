@@ -41,9 +41,14 @@ const ShowPost = () => {
       </div>
       <br />
       <div className="columns mt-5">
-        <Link to="/">
-          <button className="button is-light is-info">Go back</button>
-        </Link>
+        <div className="column is-flex is-justify-content-space-between">
+          <Link to="/">
+            <button className="button is-light is-info">Go back</button>
+          </Link>
+          <Link to={`/delete/${id}`}>
+            <button className="button is-light is-danger">Delete Post</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

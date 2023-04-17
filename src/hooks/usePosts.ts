@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { fetchPosts, createPost, fetchPost } from "../api/posts";
+import { fetchPosts, createPost, fetchPost, deletePost } from "../api/posts";
 import { Post, NewPost } from "../interface/index";
 
 interface UsePosts {
@@ -10,6 +10,7 @@ interface UsePosts {
   error: any;
   status: string;
   addPost: any;
+  deletePost: any;
 }
 
 const usePosts = (postId: number | null): UsePosts => {
@@ -33,6 +34,17 @@ const usePosts = (postId: number | null): UsePosts => {
     },
   });
 
+  const deletePostMutation = useMutation(deletePost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("posts");
+      queryClient.invalidateQueries(["post", postId]);
+    },
+  });
+
+  const handleDeletePost = async (id: number) => {
+    await deletePostMutation.mutateAsync(id);
+  };
+
   return {
     posts,
     post,
@@ -41,6 +53,7 @@ const usePosts = (postId: number | null): UsePosts => {
     error,
     status,
     addPost,
+    deletePost: handleDeletePost,
   };
 };
 

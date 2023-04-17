@@ -38,3 +38,13 @@ export const createPost = async (post: NewPost): Promise<NewPost> => {
   }
   return data;
 };
+
+export const deletePost = async (id: number): Promise<void> => {
+  const res = await fetch(`${API_URL}/posts/${id}`, {
+    method: "DELETE",
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to delete post");
+  }
+};
