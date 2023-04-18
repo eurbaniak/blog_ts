@@ -5,6 +5,7 @@ import NewPost from "./components/NewPost";
 import usePosts from "./hooks/usePosts";
 import ShowPost from "./components/ShowPost";
 import DeletePost from "./components/DeletePost";
+import EditPost from "./components/EditPost";
 
 function App() {
   const { error } = usePosts(null);
@@ -44,6 +45,17 @@ function App() {
                       <DeletePost />
                     </Modal>
                     <ShowPost />
+                  </>
+                }
+              />
+              <Route
+                path="/edit/:id"
+                element={
+                  <>
+                    <Modal active={true}>
+                      <EditPost />
+                    </Modal>
+                    <DisplayPosts />
                   </>
                 }
               />

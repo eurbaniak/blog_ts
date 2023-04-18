@@ -29,9 +29,13 @@ const DisplayPosts: React.FC = () => {
                   <button className="button is-outlined is-info">Read</button>
                 </Link>
               </p>
-              {/* <p className="card-footer-item">
-                <button className="button is-outlined is-danger">Delete</button>
-              </p> */}
+              <p className="card-footer-item">
+                <Link to={`/edit/${id}`}>
+                  <button className="button is-outlined is-success">
+                    Edit
+                  </button>
+                </Link>
+              </p>
             </footer>
           </div>
         );

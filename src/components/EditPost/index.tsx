@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import usePosts from "../../hooks/usePosts";
-
-type Props = {};
 
 type FormValues = {
   title: string;
@@ -11,28 +9,36 @@ type FormValues = {
   author: string;
 };
 
-const NewPost = (props: Props) => {
+const EditPost = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<FormValues>();
-
-  const { addPost } = usePosts(null);
-
+  const { id } = useParams<{ id: string }>();
+  const { updatePost, post } = usePosts(Number(id));
   const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
-    if (addPost) {
-      await addPost.mutateAsync(data);
+    if (updatePost) {
+      await updatePost({ id: Number(id), updatedPost: data });
     }
     navigate("/");
   };
 
+  useEffect(() => {
+    if (post) {
+      setValue("title", post.title);
+      setValue("body", post.body);
+      setValue("author", post.author);
+    }
+  }, [post, setValue]);
+
   return (
     <div className="box">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="title has-text-centered">Add New Post</h1>
+        <h1 className="title has-text-centered">Edit Post</h1>
         <div className="field">
           <label className="label">Title</label>
           <div className="control">
@@ -77,4 +83,4 @@ const NewPost = (props: Props) => {
   );
 };
 
-export default NewPost;
+export default EditPost;

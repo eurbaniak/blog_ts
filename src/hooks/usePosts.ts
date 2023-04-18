@@ -1,5 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { fetchPosts, createPost, fetchPost, deletePost } from "../api/posts";
+import {
+  fetchPosts,
+  createPost,
+  fetchPost,
+  deletePost,
+  editPost,
+} from "../api/posts";
 import { Post, NewPost } from "../interface/index";
 
 interface UsePosts {
@@ -11,6 +17,7 @@ interface UsePosts {
   status: string;
   addPost: any;
   deletePost: any;
+  updatePost: any;
 }
 
 const usePosts = (postId: number | null): UsePosts => {
@@ -45,6 +52,17 @@ const usePosts = (postId: number | null): UsePosts => {
     await deletePostMutation.mutateAsync(id);
   };
 
+  const updatePost = useMutation<
+    NewPost,
+    any,
+    { id: number; updatedPost: NewPost }
+  >(({ id, updatedPost }) => editPost(id, updatedPost), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("posts");
+      queryClient.invalidateQueries(["post", postId]);
+    },
+  });
+
   return {
     posts,
     post,
@@ -54,6 +72,7 @@ const usePosts = (postId: number | null): UsePosts => {
     status,
     addPost,
     deletePost: handleDeletePost,
+    updatePost: updatePost.mutateAsync,
   };
 };
 

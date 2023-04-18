@@ -12,10 +12,7 @@ const Modal = ({ children, active, link }: Props) => {
   const navigate = useNavigate();
 
   const closeModal = () => {
-    if (!link) {
-      navigate("/");
-    }
-    navigate(`${link}/${id}`);
+    !link ? navigate("/") : navigate(`${link}/${id}`);
   };
 
   if (!children) return null;

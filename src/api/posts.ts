@@ -48,3 +48,20 @@ export const deletePost = async (id: number): Promise<void> => {
     throw new Error(data.message || "Failed to delete post");
   }
 };
+export const editPost = async (
+  id: number,
+  updatedPost: NewPost
+): Promise<NewPost> => {
+  const res = await fetch(`${API_URL}/posts/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedPost),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to update post");
+  }
+  return data;
+};
