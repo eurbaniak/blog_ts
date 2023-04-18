@@ -29,7 +29,7 @@ function App() {
                 path="/new"
                 element={
                   <>
-                    <Modal active={true}>
+                    <Modal active={true} blockClickOnOverlay>
                       <NewPost />
                     </Modal>
                     <DisplayPosts />
@@ -52,7 +52,7 @@ function App() {
                 path="/edit/:id"
                 element={
                   <>
-                    <Modal active={true}>
+                    <Modal active={true} blockClickOnOverlay>
                       <EditPost />
                     </Modal>
                     <DisplayPosts />

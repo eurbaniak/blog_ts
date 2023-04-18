@@ -75,9 +75,18 @@ const EditPost = () => {
             )}
           </div>
         </div>
-        <button type="submit" className="button is-primary">
-          Submit
-        </button>
+        <div className="column is-flex is-justify-content-space-between">
+          <button
+            type="submit"
+            className="button is-info is-light"
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </button>
+          <button type="submit" className="button is-primary">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );
